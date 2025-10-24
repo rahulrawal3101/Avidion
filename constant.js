@@ -1,0 +1,1 @@
+export const MONGO_URL = 'mongodb+srv://rahulrawal:RahulRawal@cluster0.drbijce.mongodb.net/avidion?retryWrites=true&w=majority'
