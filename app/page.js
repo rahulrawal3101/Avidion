@@ -17,35 +17,6 @@ export default function Home() {
   const [dashName, setDashName] = useState('Dashboard');
   const [open, setOpen] = useState(false);
 
-  // const DashboardData = [
-  //   {
-  //     icon: <DashboardIcon sx={{ color: '#bbbdc5', fontSize: '19px', mr: '5px' }} />,
-  //     name: 'Dashboard',
-  //   },
-  //   {
-  //     icon: <EventIcon sx={{ color: '#bbbdc5', fontSize: '19px', mr: '5px' }} />,
-  //     name: 'Campaign',
-  //   },
-  //   {
-  //     icon: <SettingsIcon sx={{ color: '#bbbdc5', fontSize: '19px', mr: '5px' }} />,
-  //     name: 'Settings',
-  //   },
-  // ]
-
-  // const screenHandler = (name) => {
-  //   console.log('chek e', name);
-  //   if (name == 'Dashboard') {
-  //     setDashName('Dashboard');
-  //   }
-  //   if (name == 'Campaign') {
-  //     setDashName('Campaign')
-  //   }
-  //   if (name == 'Settings') {
-  //     setDashName('Settings')
-  //   }
-
-  // }
-
   const drawerHandler = () => {
     setOpen(!open)
   }

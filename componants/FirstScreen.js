@@ -107,25 +107,25 @@ const FirstScreen = () => {
 
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6, p: '0px 5px' }}  >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{activeCampaigns}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold',userSelect:'none'}}>{activeCampaigns}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Active Campaign</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }}>
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{totalSent}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold',userSelect:'none' }}>{totalSent}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Emails Sent</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }} >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{totalReplies}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold',userSelect:'none' }}>{totalReplies}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Replies</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }} >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{meetingsBooked}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' ,userSelect:'none'}}>{meetingsBooked}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>meetings Booked</Typography>
                     </Paper>
                 </Grid>

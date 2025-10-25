@@ -70,9 +70,9 @@ const SecondScreen = () => {
             <Grid size={12} sx={{ bgcolor: '#21314b', p: '20px' }}>
                 <Typography sx={{ color: '#eef0f0', fontSize: { lg: '25px', md: '25px', sm: '20px', xs: '20px' }, userSelect: 'none' }}>Dashboard</Typography>
             </Grid>
-            <Grid container size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', border: '1px solid red', height: { lg: '593px', md: '593px', sm: '600px', xs: '600px' } }}>
+            <Grid container size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start',height: { lg: '593px', md: '593px', sm: '600px', xs: '600px' } }}>
                 <Grid size={{ lg: 10, md: 10, sm: 10, xs: 11.7 }}>
-                    <Paper sx={{ mt: '20px', p: '20px', borderRadius: '10px', border: '1px solid red' }} elevation={4}>
+                    <Paper sx={{ mt: '20px', p: '20px', borderRadius: '10px', }} elevation={4}>
 
                         <Typography sx={{ fontSize: { lg: '27px', md: '20px', sm: '18px', xs: '18px' }, fontWeight: 'bold', mb: '20px', userSelect: 'none' }}>Campaign List</Typography>
 
@@ -80,7 +80,7 @@ const SecondScreen = () => {
                             <Button sx={{ bgcolor: '#21314b', color: 'white', p: '10px', fontSize: { lg: '14px', md: '13px', sm: '13px', xs: '12px' } }} onClick={openModal}>Create new Campaign</Button>
                         </Box>
                         <Box>
-                            <TableContainer component={Paper}>
+                            <TableContainer component={Paper} sx={{userSelect:'none'}}>
                                 <Table sx={{ minWidth: 550 }} aria-label="simple table">
                                     <TableHead sx={{ bgcolor: '#21314b' }}>
                                         <TableRow >
