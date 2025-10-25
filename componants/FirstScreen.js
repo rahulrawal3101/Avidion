@@ -1,5 +1,5 @@
 'use client';
-import { Grid, Paper, Typography, useMediaQuery } from '@mui/material';
+import { Grid, Paper, Skeleton, Typography, useMediaQuery } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
@@ -93,93 +93,108 @@ const FirstScreen = () => {
         replies: item.replies
     }));
 
-    if (isLoading) {
-        return <div>
-            <p>Loading...</p>
-        </div>
-    }
+    // if (isLoading) {
+    //     return <div>
+    //         <p>Loading...</p>
+    //     </div>
+    // }
     return (
         <Grid container size={{ lg: 12, md: 12, sm: 12, xs: 12 }} >
             <Grid size={12} sx={{ bgcolor: '#21314b', p: '20px' }}>
                 <Typography sx={{ color: '#eef0f0', fontSize: { lg: '25px', md: '25px', sm: '20px', xs: '20px' }, userSelect: 'none' }}>Dashboard</Typography>
             </Grid>
+
+
+            {
+                isLoading? 
+            <Skeleton variant="rectangular" sx={{ width: '100%', height: '100px', borderRadius: '10px', mt:'20pz' }} />
+            :
             <Grid size={12} container sx={{ p: { lg: '30px', md: '30px', sm: '20px', xs: '10px' }, display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', mt: { lg: '0px', md: '0px', sm: '20px', xs: '20px' } }} spacing={2}>
+            
 
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6, p: '0px 5px' }}  >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold',userSelect:'none'}}>{activeCampaigns}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none' }}>{activeCampaigns}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Active Campaign</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }}>
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold',userSelect:'none' }}>{totalSent}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none' }}>{totalSent}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Emails Sent</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }} >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold',userSelect:'none' }}>{totalReplies}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none' }}>{totalReplies}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Replies</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }} >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' ,userSelect:'none'}}>{meetingsBooked}</Typography>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none' }}>{meetingsBooked}</Typography>
                         <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>meetings Booked</Typography>
                     </Paper>
                 </Grid>
 
 
             </Grid>
+            }
+            
             <Grid container size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', p: { lg: '30px', md: '30px', sm: '20px', xs: '10px' } }}>
-                <Grid size={12}>
-                    <Paper sx={{ borderRadius: '10px', p: '10px' }} elevation={4}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none', p: '20px' }}>Campaign Performance</Typography>
+                {
+                    isLoading ?
+                        <Skeleton variant="rectangular" sx={{ width: '100%', height: '550px', borderRadius: '10px' }} />
+                        :
+                        <Grid size={12}>
+                            <Paper sx={{ borderRadius: '10px', p: '10px' }} elevation={4}>
+                                <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none', p: '20px' }}>Campaign Performance</Typography>
 
 
 
-                        <ResponsiveContainer
-                            width="100%"
-                            // increase height by reducing aspect ratio on small screens
-                            aspect={isSmallScreen ? 1.2 : 2.5}
+                                <ResponsiveContainer
+                                    width="100%"
+                                    // increase height by reducing aspect ratio on small screens
+                                    aspect={isSmallScreen ? 1.2 : 2.5}
 
-                        >
-                            <LineChart
-                                data={chartData}
-                                margin={{ top: 20, right: 30, left: 10, bottom: 10 }}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis
-                                    dataKey="Date"
-                                    tick={{ fontSize: isSmallScreen ? 10 : 12 }}
-                                    interval="preserveStartEnd"
-                                />
-                                <YAxis tick={{ fontSize: isSmallScreen ? 10 : 12 }} />
-                                <Tooltip contentStyle={{ backgroundColor: '#fff', fontSize: 12 }} />
-                                <Legend wrapperStyle={{ fontSize: isSmallScreen ? 10 : 12 }} />
-                                <Line
-                                    type="monotone"
-                                    dataKey="sent"
-                                    stroke="#ff4d4f"
-                                    strokeWidth={2}
-                                    activeDot={{ r: 6 }}
-                                />
-                                <Line
-                                    type="monotone"
-                                    dataKey="replies"
-                                    stroke="#00b96b"
-                                    strokeWidth={2}
-                                    activeDot={{ r: 6 }}
-                                />
-                            </LineChart>
-                        </ResponsiveContainer>
+                                >
+                                    <LineChart
+                                        data={chartData}
+                                        margin={{ top: 20, right: 30, left: 10, bottom: 10 }}
+                                    >
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis
+                                            dataKey="Date"
+                                            tick={{ fontSize: isSmallScreen ? 10 : 12 }}
+                                            interval="preserveStartEnd"
+                                        />
+                                        <YAxis tick={{ fontSize: isSmallScreen ? 10 : 12 }} />
+                                        <Tooltip contentStyle={{ backgroundColor: '#fff', fontSize: 12 }} />
+                                        <Legend wrapperStyle={{ fontSize: isSmallScreen ? 10 : 12 }} />
+                                        <Line
+                                            type="monotone"
+                                            dataKey="sent"
+                                            stroke="#ff4d4f"
+                                            strokeWidth={2}
+                                            activeDot={{ r: 6 }}
+                                        />
+                                        <Line
+                                            type="monotone"
+                                            dataKey="replies"
+                                            stroke="#00b96b"
+                                            strokeWidth={2}
+                                            activeDot={{ r: 6 }}
+                                        />
+                                    </LineChart>
+                                </ResponsiveContainer>
 
-                    </Paper>
+                            </Paper>
 
 
 
-                </Grid>
+                        </Grid>
+                }
+
             </Grid>
 
         </Grid>
