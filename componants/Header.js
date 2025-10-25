@@ -7,7 +7,7 @@ const Header = ({drawerHandler}) => {
     
   return (
     <Grid container sx={{bgcolor:'#121d32', padding:'10px', display:'flex', justifyContent:'space-between', alignItems:'center' ,zIndex:99999}}>
-    <Typography sx={{fontSize:'25px', color:'white', fontWeight:700}}>Avidion</Typography>
+    <Typography sx={{fontSize:'25px', color:'white', fontWeight:700, ml:'20px'}}>Avidion</Typography>
      <MenuIcon sx={{ color: 'white', display: {lg:'none', md:'none', sm:'block', xs:'block'}, mr: '10px' }} onClick={drawerHandler} />
 
     </Grid>

@@ -4,7 +4,9 @@ import React from 'react'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import EventIcon from '@mui/icons-material/Event';
 import SettingsIcon from '@mui/icons-material/Settings';
-const SideBar = ({dashName, setDashName}) => {
+import CancelIcon from '@mui/icons-material/Cancel'; 
+
+const SideBar = ({dashName, setDashName, open, setOpen}) => {
      const DashboardData = [
     {
       icon: <DashboardIcon sx={{ color: '#bbbdc5', fontSize: '19px', mr: '5px' }} />,
@@ -32,16 +34,26 @@ const SideBar = ({dashName, setDashName}) => {
       setDashName('Settings')
     }
 
+  };
+
+   const closeHandler = () => {
+    setOpen(false)
   }
   return (
 
 
     
        <Box sx={{ p:"10px" }}>
+        <Typography sx={{fontSize:'25px', color:'white', fontWeight:700, ml:'20px', display:{lg:'none', md:'none', sm:'block', xs:'block'}}}>Avidion</Typography>
+        <Box sx={{ display: {lg:'none', md:'none', sm:'flex', xs:'flex'}, justifyContent: 'right', alignItems: 'center', p:'4px' }}>
+             
+          <CancelIcon sx={{ color: 'white', fontSize: '35px', cursor: 'pointer' }} onClick={closeHandler} />
+      
+        </Box>
               {
                 DashboardData.map((ele, index) => {
                   return (
-                    <Box key={index} sx={{ mt: '20px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', p: '5px', borderRadius: '7px', cursor: 'pointer', '&:hover': { bgcolor: dashName == 'Dashboard' ? '' : '#21314b' } }} onClick={() => { screenHandler(ele.name) }}>
+                    <Box key={index} sx={{ mt: '20px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', p: '5px', borderRadius: '7px', cursor: 'pointer', '&:hover': { bgcolor:'#21314b' } }} onClick={() => { screenHandler(ele.name) }}>
                       <Typography sx={{ color: '#bbbdc5', ml: '5px', fontSize: '19px', display: 'flex', alignItems: 'center', justifyContent: 'center', whiteSpace: 'nowrap', userSelect: 'none' }} >{ele.icon}{ele.name}</Typography>
                     </Box>
                   )

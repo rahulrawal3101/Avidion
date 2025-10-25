@@ -64,16 +64,16 @@ export default function Home() {
   return (
     <>
       <Header drawerHandler={drawerHandler} />
-      <Container disableGutters maxWidth='xl'>
+      <Container disableGutters maxWidth='xl' sx={{h:"100vh",}}>
 
-        <Grid container sx={{  }}>
-          <Grid size={{ lg: 2.5, md: 3, sm: 0, xs: 0 }} sx={{ bgcolor: '#121d32',  display: { xs: 'none', md: "block" } }}>
+        <Grid container sx={{h:"100%"}}>
+          <Grid size={{ lg: 2.5, md: 3, sm: 0, xs: 0 }} sx={{ bgcolor: '#121d32',h:"100%",  display: { xs: 'none', md: "block" } }}>
             <SideBar dashName={dashName} setDashName={setDashName} />
 
 
 
           </Grid>
-          <Grid size={{ lg: 9.5, md: 9, sm: 12, xs: 12 }} >
+          <Grid size={{ lg: 9.5, md: 9, sm: 12, xs: 12 }} sx={{height:'100%',}}>
             {
               dashName === 'Dashboard' ? (
                 <FirstScreen />

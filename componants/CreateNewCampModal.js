@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 
-const CreateNewCampModal = ({ open, setOpen ,fetchCampData}) => {
+const CreateNewCampModal = ({ open, setOpen, fetchCampData }) => {
     const [campData, setCampData] = useState([]);
 
     const [inputData, setInputData] = useState({
@@ -30,14 +30,20 @@ const CreateNewCampModal = ({ open, setOpen ,fetchCampData}) => {
                     setCampData(createCamp.data.resp);
                     setOpen(false);
                     fetchCampData();
+                    setInputData({
+                        name: "",
+                        status: '',
+                        sent: 0,
+                        replies: 0,
+                    });
 
                 }
             } catch (err) {
                 console.log(err)
             }
-        }else{
-        alert('Please fill the required field');
-    };
+        } else {
+            alert('Please fill the required field');
+        };
 
 
     }

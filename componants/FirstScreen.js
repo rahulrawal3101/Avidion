@@ -6,6 +6,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 const FirstScreen = () => {
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
     // const pdata = [
     //     {
     //         Date: '20 Oct',
@@ -59,12 +60,17 @@ const FirstScreen = () => {
 
     const fetchData = async () => {
         try {
-            const campaignData = await axios.get('/api/allcampagin')
+            setIsLoading(true)
+            const campaignData = await axios.get('/api/allcampagin');
+
             console.log('camp', campaignData);
+
             if (campaignData.data.message == 'Data Fetch Successfully') {
                 setData(campaignData.data.resp);
+                setIsLoading(false)
             }
         } catch (err) {
+            setIsLoading(false)
             console.log(err);
         }
     };
@@ -72,6 +78,7 @@ const FirstScreen = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
     const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     console.log('first page', data);
@@ -85,52 +92,58 @@ const FirstScreen = () => {
         sent: item.sent,
         replies: item.replies
     }));
+
+    if (isLoading) {
+        return <div>
+            <p>Loading...</p>
+        </div>
+    }
     return (
         <Grid container size={{ lg: 12, md: 12, sm: 12, xs: 12 }} >
             <Grid size={12} sx={{ bgcolor: '#21314b', p: '20px' }}>
                 <Typography sx={{ color: '#eef0f0', fontSize: { lg: '25px', md: '25px', sm: '20px', xs: '20px' }, userSelect: 'none' }}>Dashboard</Typography>
             </Grid>
-            <Grid size={12} container sx={{  p:{lg: '30px', md:'30px', sm:'20px', xs:'10px'}, display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', }} spacing={2}>
+            <Grid size={12} container sx={{ p: { lg: '30px', md: '30px', sm: '20px', xs: '10px' }, display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', mt: { lg: '0px', md: '0px', sm: '20px', xs: '20px' } }} spacing={2}>
 
-                <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }}  >
+                <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6, p: '0px 5px' }}  >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
                         <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{activeCampaigns}</Typography>
-                        <Typography sx={{ fontSize: { lg: '20px', md: '20px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Active Campaign</Typography>
+                        <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Active Campaign</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }}>
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
                         <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{totalSent}</Typography>
-                        <Typography sx={{ fontSize: { lg: '20px', md: '20px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Emails Sent</Typography>
+                        <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Emails Sent</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }} >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
                         <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{totalReplies}</Typography>
-                        <Typography sx={{ fontSize: { lg: '20px', md: '20px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Replies</Typography>
+                        <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>Replies</Typography>
                     </Paper>
                 </Grid>
                 <Grid size={{ lg: 3, md: 3, sm: 6, xs: 6 }} >
                     <Paper sx={{ p: '10px 15px', borderRadius: '10px' }} elevation={5}>
                         <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold' }}>{meetingsBooked}</Typography>
-                        <Typography sx={{ fontSize: { lg: '20px', md: '20px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>meetings Booked</Typography>
+                        <Typography sx={{ fontSize: { lg: '20px', md: '16px', sm: '15px', xs: '15px' }, whiteSpace: 'nowrap', color: '#9ca1af', userSelect: 'none' }}>meetings Booked</Typography>
                     </Paper>
                 </Grid>
 
 
             </Grid>
-            <Grid container size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', p:{lg: '30px', md:'30px', sm:'20px', xs:'10px'} }}>
+            <Grid container size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', p: { lg: '30px', md: '30px', sm: '20px', xs: '10px' } }}>
                 <Grid size={12}>
-                    <Paper sx={{ borderRadius: '10px' }} elevation={4}>
-                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none' , p:'20px'}}>Campaign Performance</Typography>
-                       
+                    <Paper sx={{ borderRadius: '10px', p: '10px' }} elevation={4}>
+                        <Typography sx={{ fontSize: { lg: '30px', md: '25px', sm: '20px', xs: '20px' }, fontWeight: 'bold', userSelect: 'none', p: '20px' }}>Campaign Performance</Typography>
+
 
 
                         <ResponsiveContainer
                             width="100%"
                             // increase height by reducing aspect ratio on small screens
                             aspect={isSmallScreen ? 1.2 : 2.5}
-                           
+
                         >
                             <LineChart
                                 data={chartData}
